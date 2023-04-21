@@ -50,3 +50,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
+
+#define COMBO_TERM 100       // how quickly all combo keys must be pressed in succession to trigger
+#define COMBO_MUST_HOLD_MODS // if a combo triggers a modifier, only trigger when the combo is held
+#define COMBO_HOLD_TERM 175  // how long at least one of the combo keys must be held to trigger
