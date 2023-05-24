@@ -150,7 +150,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX, DE_LABK, DE_SLSH, DE_LCBR, DE_LPRN, DE_LBRC,                      DE_RBRC, DE_RPRN, DE_RCBR, DE_BSLS, DE_RABK, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       XXXXXXX, DE_MICR,  DE_AT, DE_HASH,  DE_PIPE, XXXXXXX,                      KC_PSCR, KC_VOLU, KC_VOLD, DE_TILD, KC_CALC, XXXXXXX,
+       AS_TOGG, DE_MICR,  DE_AT, DE_HASH,  DE_PIPE, XXXXXXX,                      KC_PSCR, KC_VOLU, KC_VOLD, DE_TILD, KC_CALC, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                         _______, _______,  KC_SPC,     LT(MO(3),KC_ENT),   _______, _______
                                       //`--------------------------'  `--------------------------'
