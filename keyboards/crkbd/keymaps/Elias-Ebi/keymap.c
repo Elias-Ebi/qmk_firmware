@@ -129,6 +129,23 @@ combo_t key_combos[] = {
 
 };
 
+enum custom_keycodes {
+    AUTOFORM,
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record){
+    switch (keycode) {
+        case AUTOFORM:
+            if(record-> event.pressed) {
+                SEND_STRING(SS_LCTL(SS_LALT("l")));
+            } else {
+                //nothing on release
+            }
+            break;
+    }
+    return true;
+};
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_split_3x6_3(
@@ -146,38 +163,38 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //coding block (wip) --> weg mit dem osm
   [1] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       XXXXXXX, DE_DQUO, DE_QUOT, DE_SECT,  DE_DLR, DE_AMPR,                       DE_DEG, DE_PERC, DE_ACUT, DE_GRV, KC_EXLM, DE_QUES,
+       DE_CIRC, DE_QUOT, DE_DQUO, DE_SECT,  DE_DLR, DE_AMPR,                       DE_DEG, DE_PERC, DE_ACUT, DE_GRV, KC_EXLM, DE_QUES,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, DE_LABK, DE_SLSH, DE_LCBR, DE_LPRN, DE_LBRC,                      DE_RBRC, DE_RPRN, DE_RCBR, DE_BSLS, DE_RABK, XXXXXXX,
+      XXXXXXX, DE_LABK, DE_SLSH, DE_LCBR, DE_LPRN, DE_LBRC,                      DE_RBRC, DE_RPRN, DE_RCBR, DE_BSLS, DE_RABK, KC_VOLU,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       AS_TOGG, DE_MICR,  DE_AT, DE_HASH,  DE_PIPE, XXXXXXX,                      KC_PSCR, KC_VOLU, KC_VOLD, DE_TILD, KC_CALC, XXXXXXX,
+       AS_TOGG, DE_MICR,  DE_AT, DE_HASH,  DE_PIPE, XXXXXXX,                      AUTOFORM, DE_TILD, XXXXXXX, XXXXXXX, KC_CALC, KC_VOLD,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                         _______, _______,  KC_SPC,     LT(MO(3),KC_ENT),   _______, _______
                                       //`--------------------------'  `--------------------------'
 
   ),
 
-//numpad block (wip) --> F-Tasten wollen noch nicht
+//numpad block 
   [2] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_F6, KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,                     KC_PMNS,  KC_7,    KC_8,   KC_9,    KC_PSLS, DE_EQL,
+       KC_F1, KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                     KC_PMNS,  KC_7,    KC_8,   KC_9,    KC_PSLS, DE_EQL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, KC_F12,  KC_LEFT,  KC_UP, KC_DOWN, KC_RIGHT,                      KC_PPLS,  KC_4,   KC_5,   KC_6,    KC_PAST, XXXXXXX,
+      XXXXXXX, XXXXXXX,  KC_LEFT,  KC_UP, KC_DOWN, KC_RIGHT,                      KC_PPLS,  KC_4,   KC_5,   KC_6,    KC_PAST, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, KC_F1, KC_F2,  KC_F3,   KC_F4, KC_F5,                             KC_0,    KC_1,   KC_2,    KC_3,    KC_COMM, KC_DOT,
+      KC_F7, KC_F8, KC_F9,  KC_F10,   KC_F11, KC_F12,                             KC_0,    KC_1,   KC_2,    KC_3,    KC_COMM, KC_DOT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                 _______, _______,  LT(MO(3),KC_SPC),     KC_ENT, _______, _______
                                       //`--------------------------'  `--------------------------'
   ),
 
-   //currently unused
+   //mouse layer
   [3] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_3,   XXXXXXX,  KC_Q,   KC_W,    KC_E,   KC_R,                           KC_4,    KC_5,    KC_6,    KC_UP,   XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, KC_MS_U, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_2,   KC_LCTL, KC_A,    KC_S,    KC_LSFT,    KC_F,                         XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,
+      XXXXXXX, XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_R, XXXXXXX,                     KC_WH_U, KC_BTN1, KC_BTN2, KC_BTN3, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_1,   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_G,                        TG(MO(3)), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_WH_D, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                               _______,   _______,  KC_SPC,                       KC_ENT, _______, _______
                                     	//`--------------------------'  `--------------------------'
