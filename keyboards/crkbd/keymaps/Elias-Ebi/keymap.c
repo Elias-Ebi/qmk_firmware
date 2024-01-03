@@ -131,6 +131,7 @@ combo_t key_combos[] = {
 
 enum custom_keycodes {
     AUTOFORM,
+    KUBECTL=SAFE_RANGE,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record){
@@ -142,8 +143,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record){
                 //nothing on release
             }
             break;
+        case KUBECTL:
+            if (record->event.pressed) { 
+                SEND_STRING("kubectl ");
+            }
+            break;
     }
-    return true;
+    return true; 
 };
 
 
@@ -160,14 +166,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //`--------------------------'  `--------------------------'
 
   ),
-//coding block (wip) --> weg mit dem osm
+//coding block (wip) --> weg mit dem osm 
   [1] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        DE_CIRC, DE_QUOT, DE_DQUO, DE_SECT,  DE_DLR, DE_AMPR,                       DE_DEG, DE_PERC, DE_ACUT, DE_GRV, KC_EXLM, DE_QUES,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX, DE_LABK, DE_SLSH, DE_LCBR, DE_LPRN, DE_LBRC,                      DE_RBRC, DE_RPRN, DE_RCBR, DE_BSLS, DE_RABK, KC_VOLU,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       AS_TOGG, DE_MICR,  DE_AT, DE_HASH,  DE_PIPE, XXXXXXX,                      AUTOFORM, DE_TILD, XXXXXXX, XXXXXXX, KC_CALC, KC_VOLD,
+       AS_TOGG, DE_MICR,  DE_AT, DE_HASH,  DE_PIPE, KUBECTL,                      AUTOFORM, DE_TILD, XXXXXXX, XXXXXXX, KC_CALC, KC_VOLD,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                         _______, _______,  KC_SPC,     LT(MO(3),KC_ENT),   _______, _______
                                       //`--------------------------'  `--------------------------'
@@ -190,11 +196,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    //mouse layer
   [3] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX, XXXXXXX, XXXXXXX, KC_MS_U, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, KC_MS_U, XXXXXXX, XXXXXXX,                      KC_WH_U, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_R, XXXXXXX,                     KC_WH_U, KC_BTN1, KC_BTN2, KC_BTN3, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_R, XXXXXXX,                     KC_WH_D, KC_BTN1, KC_BTN2, KC_BTN3, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_WH_D, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                               _______,   _______,  KC_SPC,                       KC_ENT, _______, _______
                                     	//`--------------------------'  `--------------------------'

@@ -55,6 +55,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define COMBO_MUST_HOLD_MODS // if a combo triggers a modifier, only trigger when the combo is held
 #define COMBO_HOLD_TERM 175  // how long at least one of the combo keys must be held to trigger
 
+#define AUTO_SHIFT_TIMEOUT 150
+#define NO_AUTO_SHIFT_NUMERIC 
+
 // Mouse key speed and acceleration.
 #undef MOUSEKEY_DELAY
 #define MOUSEKEY_DELAY          0
