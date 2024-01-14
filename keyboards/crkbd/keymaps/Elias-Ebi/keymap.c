@@ -130,8 +130,8 @@ combo_t key_combos[] = {
 };
 
 enum custom_keycodes {
-    AUTOFORM,
     KUBECTL=SAFE_RANGE,
+    AUTOFORM,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record){
